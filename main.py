@@ -52,12 +52,13 @@ if "vector_store" not in st.session_state:
     st.session_state["vector_store"]=vector_store
 else:
     vector_store=st.session_state["vector_store"]
+if groq_api_key:
+    if "llm" not in st.session_state:
+        llm=ChatGroq(temperature=0.2,model="llama-3.1-70b-versatile",api_key=groq_api_key)
+        st.session_state["llm"]=llm
+    else:
+        llm=st.session_state["llm"]
 
-if "llm" not in st.session_state:
-    llm=ChatGroq(temperature=0.2,model="llama-3.1-70b-versatile",api_key=groq_api_key)
-    st.session_state["llm"]=llm
-else:
-    llm=st.session_state["llm"]
 
 
 
