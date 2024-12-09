@@ -60,9 +60,6 @@ if groq_api_key:
         llm=st.session_state["llm"]
 
 
-
-
-
 def display_chat_history():
     for message in st.session_state.messages:
         with st.chat_message(message["role"]):
@@ -154,12 +151,14 @@ def get_context(query):
         chat_history = "\n".join([f"{msg['role']}: {msg['content']}" for msg in last_messages])
         clean_data=clean_rag_data(query,f"\n\nChat History \n\n{chat_history}",llm)
         context += f"\n\nChat History: \n\n{clean_data}"
-    
-    if use_web:
-        st.write("Extracting Data From Web")
-        search = DuckDuckGoSearchRun()
-        clean_data=clean_rag_data(query,search.invoke(query),llm)
-        context += f"\n\nWeb Data:\n{clean_data}"
+    try:
+        if use_web:
+            st.write("Extracting Data From Web")
+            search = DuckDuckGoSearchRun()
+            clean_data=clean_rag_data(query,search.invoke(query),llm)
+            context += f"\n\nWeb Data:\n{clean_data}"
+    except:
+        pass
 
     if not use_chat_history:
         st.write("Extracting Data From ChatPPT")
