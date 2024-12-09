@@ -1,0 +1,9 @@
+pinecone
+langchain-pinecone
+langchain-groq
+langchain
+langchain-community
+langchain-core
+langchain-google-genai
+duckduckgo-search
+streamlit
