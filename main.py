@@ -65,14 +65,9 @@ groq_api_key = st.sidebar.text_input("LLM API Key", type="password", help="Enter
 if not groq_api_key:
     st.sidebar.markdown("<p style='color: #f44336;'>Please enter the LLM API key to proceed!</p>", unsafe_allow_html=True)
 
-with st.sidebar:
-    col1, col2 = st.columns(2)
-    with col1:
-        use_vector_store = st.checkbox("Use Documents", value=True)
-    with col2:
-        use_chat_history = st.checkbox("Use Chat History (Last 2 Chats)", value=False)
-
 use_web = st.sidebar.checkbox("Allow Internet Access", value=True)
+use_vector_store = st.sidebar.checkbox("Use Documents", value=True)
+use_chat_history = st.sidebar.checkbox("Use Chat History (Last 2 Chats)", value=False)
 
 if use_chat_history:
     use_vector_store, use_web = False, False
@@ -81,7 +76,19 @@ if use_chat_history:
 def img_to_ques(img,query):
     genai.configure(api_key="AIzaSyBGMk5yhUdGv-Ph5P6Y5rq7F3G56GQJbaw")
     model = genai.GenerativeModel("gemini-1.5-flash-8b")
-    prompt = f"Extract/Generate a Question from given image with keeping user's question in mind \n User's question {query}"
+    prompt = f"""Analyze the provided image and the query: "{query}". Based on the content of the image:
+1. Extract or generate a question that aligns with the given query.
+2. Identify and provide any relevant information or insights from the image that could help address or solve the problem described in the query.
+
+Format your response as follows:
+
+Question:  
+[Generated question based on the image and query]  
+
+Relevant Information:  
+**optional, only if there are any**
+[Key details or insights from the image that are relevant to solving the problem]
+"""
     return model.generate_content([prompt, img]).text
 
 # Instructions
@@ -251,41 +258,25 @@ def respond_to_user(query, context, llm):
 
     return response
 
-def reconfig_chatinput():
-    st.markdown(
-        """
-    <style>
-        div[data-testid="stVerticalBlock"] div[data-testid="stVerticalBlock"]:first-of-type {
-            position: fixed;
-            bottom: 0;
-            width: 100%; /* Span the full width of the viewport */;
-            background-color: #0E117;
-            z-index: 1000;
-            /* Other styles as needed */    
-        }
-    </style>
-    """,
-        unsafe_allow_html=True,
-    )
-    return
-
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
 if groq_api_key:
+    with st.container():
+        user_inp = multimodal_chatinput()
+    with st.container():
+        if user_inp:
+            question=""
+            if user_inp["images"]:
+                b64_image=user_inp["images"][0].split(",")[-1]
+                image = Image.open(io.BytesIO(base64.b64decode(b64_image)))
+                question = img_to_ques(image, user_inp["text"])
+                user_inp["text"]=""
 
-    if user_inp := multimodal_chatinput():
-        question=""
-        if user_inp["images"]:
-            b64_image=user_inp["images"][0].split(",")[-1]
-            image = Image.open(io.BytesIO(base64.b64decode(b64_image)))
-            question = img_to_ques(image, user_inp["text"])
-            user_inp["text"]=""
+            st.session_state.messages.append({"role": "user", "content": question+user_inp["text"]})
+            context = get_context(question+user_inp["text"])
+            with st.spinner(":green[Combining jhol jhal...]"):
+                assistant_response = respond_to_user(question+user_inp["text"], context, llm)
+            st.session_state.messages.append({"role": "assistant", "content": assistant_response})
 
-        st.session_state.messages.append({"role": "user", "content": question+user_inp["text"]})
-        context = get_context(question+user_inp["text"])
-        with st.spinner(":green[Combining jhol jhal...]"):
-            assistant_response = respond_to_user(question+user_inp["text"], context, llm)
-        st.session_state.messages.append({"role": "assistant", "content": assistant_response})
-
-        display_chat_history()
+            display_chat_history()
