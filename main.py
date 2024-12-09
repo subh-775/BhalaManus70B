@@ -1,5 +1,4 @@
 from langchain_groq import ChatGroq
-from dotenv import load_dotenv
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from pinecone import Pinecone
@@ -7,7 +6,7 @@ from langchain_google_genai.embeddings import GoogleGenerativeAIEmbeddings
 from langchain_pinecone import PineconeVectorStore
 from langchain_community.tools import DuckDuckGoSearchRun
 import streamlit as st
-load_dotenv()
+
 st.set_page_config(page_title="Bhala Manus")
 st.header("No Back Abhiyan")
 
