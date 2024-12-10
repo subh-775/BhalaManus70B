@@ -78,8 +78,7 @@ def img_to_ques(img,query):
     genai.configure(api_key="AIzaSyBGMk5yhUdGv-Ph5P6Y5rq7F3G56GQJbaw")
     model = genai.GenerativeModel("gemini-1.5-flash-8b")
     prompt = f"""Analyze the provided image and the query: "{query}". Based on the content of the image:
-1. Extract question from image.
-    
+1. Extract the question of image.
 Format your response as follows:
 
 Question:  
@@ -242,6 +241,7 @@ def respond_to_user(query, context, llm):
     - Clearly identify the source(s) of the information you are using.
     - If no relevant context is available, explicitly state that the answer is not known.
     - Ensure your response is clear and easy to understand and remember even for a naive person.
+    - always include calculation whenever or whever needed and reply in proper markdown format.
     """
     user_prompt = """Question: {question} 
     Context: {context} """
