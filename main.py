@@ -76,17 +76,20 @@ if use_chat_history:
 
 def img_to_ques(img,query):
     genai.configure(api_key="AIzaSyBGMk5yhUdGv-Ph5P6Y5rq7F3G56GQJbaw")
-    model = genai.GenerativeModel("gemini-1.5-flash-8b")
+    model = genai.GenerativeModel("gemini-1.5-flash")
     prompt = f"""Analyze the provided image and the query: "{query}". Based on the content of the image:
-1. Extract the question of image.
+
+1. Extract the question from the image, focusing only on the problem statement.
+2. For any tabular , structured data or mcq or anyother relevant information present in the image, provide it in the "Relevant Information" section.
+
 Format your response as follows:
 
 Question:  
 [Generated question based on the image and query]  
 
 Relevant Information:  
-**optional, only if there are any**
-[Key details or insights from the image that are relevant to solving the problem]
+[Include any tabular data, key details, or insights relevant to solving the problem. Ensure structured data is presented in an easily readable format.]
+
 """
     return model.generate_content([prompt, img]).text
 
@@ -237,11 +240,9 @@ def respond_to_user(query, context, llm):
     4. **LLM Data**: Insights or completions provided by the language model.
 
     When answering:
+    - When Answering include all important information , as well as key points
     - Make it sure to provide the calculations, regarding the solution if there are any.
-    - Clearly identify the source(s) of the information you are using.
-    - If no relevant context is available, explicitly state that the answer is not known.
     - Ensure your response is clear and easy to understand and remember even for a naive person.
-    - always include calculation whenever or whever needed and reply in proper markdown format.
     """
     user_prompt = """Question: {question} 
     Context: {context} """
