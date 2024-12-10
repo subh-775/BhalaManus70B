@@ -78,9 +78,8 @@ def img_to_ques(img,query):
     genai.configure(api_key="AIzaSyBGMk5yhUdGv-Ph5P6Y5rq7F3G56GQJbaw")
     model = genai.GenerativeModel("gemini-1.5-flash-8b")
     prompt = f"""Analyze the provided image and the query: "{query}". Based on the content of the image:
-1. Extract or generate a question that aligns with the given query.
-2. Identify and provide any relevant information or insights from the image that could help address or solve the problem described in the query.
-
+1. Extract question from image.
+    
 Format your response as follows:
 
 Question:  
