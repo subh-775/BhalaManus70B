@@ -18,7 +18,8 @@ st.markdown("""
     <style>
     .main {
         font-family: 'Arial', sans-serif;
-        background-color: #f0f8ff;
+        background-color: #454545;
+        color: #fff;
     }
     .header {
         text-align: center;
@@ -172,6 +173,7 @@ def get_llm_data(query, llm):
         You are a knowledgeable and approachable Computer Science professor with expertise in a wide range of topics.
         Your role is to provide clear, easy, and engaging explanations to help students understand complex concepts.
         When answering:
+        - Make it sure to provide the calculations, regarding the solution if there are any.
         - Start with a high-level overview, then dive into details as needed.
         - Use examples, analogies, or step-by-step explanations to clarify ideas.
         - Ensure your answers are accurate, well-structured, and easy to follow.
@@ -237,8 +239,8 @@ def respond_to_user(query, context, llm):
     4. **LLM Data**: Insights or completions provided by the language model.
 
     When answering:
+    - Make it sure to provide the calculations, regarding the solution if there are any.
     - Clearly identify the source(s) of the information you are using.
-    - If multiple sources are available, integrate them into a cohesive summary.
     - If no relevant context is available, explicitly state that the answer is not known.
     - Ensure your response is clear and easy to understand and remember even for a naive person.
     """
@@ -261,6 +263,7 @@ def respond_to_user(query, context, llm):
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
+display_chat_history()
 if groq_api_key:
     with st.container():
         user_inp = multimodal_chatinput()
@@ -279,4 +282,10 @@ if groq_api_key:
                 assistant_response = respond_to_user(question+user_inp["text"], context, llm)
             st.session_state.messages.append({"role": "assistant", "content": assistant_response})
 
-            display_chat_history()
+            with st.chat_message("user"):
+                st.write(question+user_inp["text"])
+            with st.chat_message("assistant"):
+                st.write(assistant_response)
+
+
+            
