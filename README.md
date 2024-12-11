@@ -61,9 +61,9 @@ Features at a Glance :
 - 
 ## 🔑 Configuration
 - Required API Keys
-- Groq API Key: Get your free API key from Groq.
-- Pinecone API Key: Obtain the key from your Pinecone dashboard.
-- Google Generative AI API Key: Set up your key for embedding and generative tasks.
+- **Groq API Key:** Get your free API key from Groq.
+- **Pinecone API Key:** Obtain the key from your Pinecone dashboard.
+- **Google Generative AI API Key:** Set up your key for embedding and generative tasks.
 - Add these keys to the sidebar during runtime.
 
 🤝 Contributing
@@ -91,6 +91,6 @@ limitations under the License.
 ```
 
 ## 🌟 Acknowledgments
-Groq and Google Generative AI for providing cutting-edge AI solutions.
-Pinecone for enabling fast and scalable vector database operations.
-Streamlit for its simple and elegant UI framework.
+- Groq and Google Generative AI for providing cutting-edge AI solutions.
+- Pinecone for enabling fast and scalable vector database operations.
+- Streamlit for its simple and elegant UI framework.
