@@ -49,8 +49,8 @@ Features at a Glance :
 - **Text Input:** Enter queries directly into the text input field.
 - **Image Analysis:** Upload images to extract meaningful insights or queries.
 - **Sidebar Configurations:**
-  1. Create and enter your Groq API Key and other required credentials.You can create your api by clicking on side panel and going down here:
-     ![Create Your Api Key](test_images/grok.png)
+  1. Create and enter your Groq API Key and other required credentials.You can create your api by clicking on side panel and create your api key:
+     ![Api key](test_images/grok.png)
 
   3. Enable or disable vector database, web search, or chat history usage.
 - You can also use the model here at : <a href="http://Good-boy.streamlit.app">Here</a>
