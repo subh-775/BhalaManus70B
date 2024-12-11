@@ -51,7 +51,7 @@ Features at a Glance :
 - **Sidebar Configurations:**
   1. Create your api by clicking on side panel following image detail:
      ![Api key](test_images/grok.png)
-  2. Once created enter your Groq API Key and other required credentials at `LLM API Key` displaying above.
+  2. Once created enter your Groq API Key at `LLM API Key` displaying above.
   3. Enable or disable vector database, web search, or chat history usage.
 - You can also use the model here at : <a href="http://Good-boy.streamlit.app">Here</a>
 
