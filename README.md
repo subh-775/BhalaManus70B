@@ -1,56 +1,81 @@
-# 🎓 GradeGuru70B: Your Learning Companion 📚  
+# 🌟 Bhala Manus - No Back Abhiyan  
 
-GradeGuru70B is an advanced AI-powered educational tool designed to enhance learning experiences. Built on state-of-the-art machine learning models, it provides personalized assistance, insightful feedback, and a wide range of features to help students and educators thrive. 🌟  
+Bhala Manus is a multimodal AI assistant powered by Groq and Google Generative AI models. This tool enables seamless interaction through text and image inputs, providing insightful responses by leveraging LLM capabilities, vector databases, and web search integrations.  
 
 ## 🚀 Features  
-- **AI-Powered Insights**: Leverage the power of a 70B model to analyze and provide meaningful insights.  
-- **Personalized Learning**: Tailored recommendations to suit individual learning styles.  
-- **Feedback Generation**: Quickly generate feedback on assignments, exams, and projects.  
-- **Interactive Assistance**: Engaging Q&A sessions for better understanding and clarity.  
+- **Multimodal Interaction**: Supports both text and image inputs for a diverse range of queries.  
+- **Advanced AI Models**: Built on Groq's `llama-3.1-70b-versatile` and Google Generative AI for insightful responses.  
+- **Contextual Responses**: Leverages chat history, vector databases, and web data for accurate answers.  
+- **Vector Database Integration**: Connects to Pinecone for storing and retrieving document embeddings.  
+- **Customizable Sidebar Options**: Configure API keys, chat history usage, and web access settings.  
+
+---
 
 ## 🛠️ Tech Stack  
-- Python 🐍  
-- PyTorch 🔥  
+- **Frontend**: Streamlit for interactive web-based UI.  
+- **LLM Models**: Groq and Google Generative AI (`gemini-1.5-flash`, `embedding-001`).  
+- **Vector Database**: Pinecone for similarity searches.  
+- **Utilities**: PIL for image handling, DuckDuckGo Search API for web queries.  
+
+---
 
 ## 📂 Folder Structure  
 ```plaintext
-GradeGuru70B/
+project/
 │
-├── datasets/          # Contains pre-processed datasets for training and evaluation
-├── models/            # Pre-trained models and checkpoints
-├── src/               # Source code for the application
-│   ├── inference.py   # Script for running inference on input data
-│   ├── training.py    # Script for training the model
-│   └── utils.py       # Utility functions and helpers
-├── requirements.txt   # Dependencies required to run the project
-└── README.md          # Project documentation
+├── src/
+│   ├── main.py              # Main application file
+│   ├── utils.py             # Utility functions
+│   └── config.py            # Configuration file for constants and settings
+├── requirements.txt         # Python dependencies
+└── README.md                # Project documentation
 ```
 ## 📦 Installation
-Clone the repository:
+Clone the Repository
 ```
-Copy code
-git clone https://github.com/subh-775/GradeGuru70B.git
-cd GradeGuru70B
+git clone https://github.com/subh-775/Bhala-Manus.git
+cd Bhala-Manus
 ```
-## Install dependencies:
+## Install Dependencies
 ```
 pip install -r requirements.txt
 ```
-## ▶️ Usage
-Run Training:
+## Run the Application
 ```
-python src/training.py --config configs/train_config.json
+streamlit run src/main.py
 ```
-Run Inference:
-```
-python src/inference.py --input examples/sample_input.json
-```
-## 📝 License
-This project is licensed under the Apache License 2.0. See the LICENSE file for details.
+## 📝 Usage
+Features at a Glance
+- Text Input: Enter queries directly into the text input field.
+- Image Analysis: Upload images to extract meaningful insights or queries.
+- Sidebar Configurations:
+  Enter your Groq API Key and other required credentials.
+  Enable or disable vector database, web search, or chat history usage.
+- You can also use the model here at : <a href="http://Good-boy.streamlit.app">Here</a>
 
-## 🤝 Contributing
-We welcome contributions! Please read the CONTRIBUTING.md file for details on the process of submitting pull requests.
+## Input Examples
+- Text Query: "Explain the concept of transformers in ML."
+- Image Query: Upload an image containing text or data and provide a relevant query.
+## 🔑 Configuration
+- Required API Keys
+- Groq API Key: Get your free API key from Groq.
+- Pinecone API Key: Obtain the key from your Pinecone dashboard.
+- Google Generative AI API Key: Set up your key for embedding and generative tasks.
+- Add these keys to the sidebar during runtime.
 
-## 🌟 Acknowledgments
-Team Members: Special thanks to the contributors and testers for their support! 🙌
-Frameworks: PyTorch and other amazing libraries for powering this project.
+🤝 Contributing
+Contributions are welcome! Please follow these steps:
+
+Fork the repository.
+Create a new branch (feature/your-feature).
+Commit your changes and push to the branch.
+Create a Pull Request.
+For detailed instructions, see CONTRIBUTING.md.
+
+📝 License
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+🌟 Acknowledgments
+Groq and Google Generative AI for providing cutting-edge AI solutions.
+Pinecone for enabling fast and scalable vector database operations.
+Streamlit for its simple and elegant UI framework.
