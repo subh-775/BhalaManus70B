@@ -1,6 +1,6 @@
 # 📚 Bhala Manus - No Back Abhiyan  
 
-Bhala Manus is a multimodal AI assistant powered by Groq and Google Generative AI models. This tool enables seamless interaction through text and image inputs, providing insightful responses by leveraging LLM capabilities, vector databases, and web search integrations.  
+Bhala Manus is a multimodal AI assistant powered by Groq and Google Generative AI models. This tool enables seamless interaction through text and image inputs, providing insightful responses by leveraging LLM capabilities, vector databases, and web search integrations.
 
 ## ⚙ Features  
 - **Multimodal Interaction**: Supports both text and image inputs for a diverse range of queries.  
